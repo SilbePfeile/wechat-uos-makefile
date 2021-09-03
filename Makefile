@@ -1,8 +1,10 @@
-pkgver=2.0.0
+pkgver=2.0.0+lsblk
+_pkgver=2.0.0
 epoch=2
+pkgrel=1145141919
 srcdir=deb
 pkgdir=
-pkgname=com.qq.weixin_${pkgver}-${epoch}_amd64.deb
+pkgname=com.qq.weixin_${_pkgver}-${epoch}_amd64.deb
 
 prepare:
 	@echo Downloading source .deb package
@@ -30,7 +32,8 @@ install:
 
 	@echo "Creating Desktops and Hacks..."
 	install -Dm644 uos-lsb uos-release -t ${pkgdir}/opt/wechat-uos/crap/
-	install -Dm644 wechat-uos.desktop -t ${pkgdir}/usr/share/applications/
+	install -Dm755 uos-lsblk -t ${pkgdir}/opt/wechat-uos/crap/
+	install -Dm644 wechat-uos.desktop -t ${pkgdir}/usr/share/applications/	
 
 clean:
 	rm -rf ${srcdir}
